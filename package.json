@@ -138,6 +138,12 @@
           "type": "string",
           "default": "",
           "description": "Absolute path to the pi binary. Leave empty for auto-detection."
+        },
+        "pi-vscode.bootstrapLines": {
+          "type": "string",
+          "editPresentation": "multilineText",
+          "default": "You are running inside VS Code with a live IDE bridge.\n\nPrefer VS Code bridge tools over manual file reads or guesses: use them to get editor state, selection, diagnostics, symbols, definitions, hovers, references, code actions, workspace symbols, and open editors.\n\nAfter edits, check `vscode_get_diagnostics` for real-time type/lint errors from the IDE instead of running separate commands.",
+          "description": "System prompt text prepended to each pi session. Leave empty to disable."
         }
       }
     },

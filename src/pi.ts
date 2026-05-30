@@ -1,7 +1,7 @@
 import { accessSync, constants, realpathSync } from "node:fs";
 import { join } from "node:path";
 import * as vscode from "vscode";
-import { BRIDGE_BOOTSTRAP_LINES, BRIDGE_EXTENSION_PATH } from "./constants.ts";
+import { BRIDGE_EXTENSION_PATH } from "./constants.ts";
 import { resolvePiBinary } from "./_resolve.ts";
 import {
   createPiGlobalInstallCommand,
@@ -97,7 +97,10 @@ export function createPiEnvironment(
 
 function createPiBaseArgs(extensionUri: vscode.Uri, contextLines?: string[]): string[] {
   const args: string[] = ["--extension", join(extensionUri.fsPath, BRIDGE_EXTENSION_PATH)];
-  const bootstrapLines = [...BRIDGE_BOOTSTRAP_LINES, ...(contextLines ?? [])];
-  if (bootstrapLines.length > 0) args.push("--append-system-prompt", bootstrapLines.join("\n\n"));
+  const config = vscode.workspace.getConfiguration("pi-vscode");
+  const bootstrapText = config.get<string>("bootstrapLines") ?? "";
+  const contextText = contextLines?.join("\n\n") ?? "";
+  const allText = [bootstrapText, contextText].filter(Boolean).join("\n\n");
+  if (allText) args.push("--append-system-prompt", allText);
   return args;
 }
