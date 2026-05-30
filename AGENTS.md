@@ -67,6 +67,7 @@ See [.agents/docs/icons.md](.agents/docs/icons.md)
 - Terminal cleaned up on close, recreated on next command
 - CJS wrapper pattern allows `"type": "module"` while satisfying VS Code's `require()` loading
 - Pi binary auto-detected from common paths (`~/.bun/bin/pi`, `~/.local/bin/pi`, etc.) or configurable via `pi-vscode.path` setting
+- `pi-vscode.bootstrapLines` — configurable text prepended to each pi session (default: 3 paragraphs about the VS Code bridge); leave empty to disable
 - `Pi: Upgrade Pi and Packages` reuses the binary resolver, guesses the package manager from the discovered binary path, launches the corresponding global install command for `@earendil-works/pi-coding-agent@latest`, and chains `pi update` afterward
 - Terminal shell is the pi binary itself (not a shell running pi)
 - Every pi launch injects `PI_VSCODE_BRIDGE_URL`, `PI_VSCODE_BRIDGE_TOKEN`, and a per-terminal `PI_VSCODE_TERMINAL_ID` plus `--extension bridge/pi-vscode-bridge.js`
