@@ -42,7 +42,6 @@ export async function createNewTerminal(options: {
     },
   });
 
-  void vscode.commands.executeCommand("workbench.action.lockEditorGroup");
   return terminal;
 }
 
